@@ -1,39 +1,60 @@
 const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
+const pump = require('pump');
 const browserSync = require('browser-sync').create();
+const reload = browserSync.reload;
 const path = require('path');
 
 const SRC_DIR = 'src';
 const DEST_DIR = 'static';
 
-gulp.task('serve', ['html', 'scss'], () => {
+gulp.task('browser-sync', ['nodemon'], () => {
   browserSync.init({
-    server: {
-      baseDir: ['static', 'static/html'],
-      routes: {
-        '/css': '../css',
-        '/images': '../images'
-      }
-    }
+    proxy: 'localhost:3000',
+    port: 5000,
+    notify: true
   });
+});
 
-  gulp.watch(`${SRC_DIR}/sass/**/*.scss`, ['scss']);
-  gulp.watch(`${SRC_DIR}/html/**/*.html`, ['html']);
-})
+gulp.task('nodemon', (cb) => {
+  let called = false;
+  return plugins.nodemon({
+    script: 'index.js',
+    ignore: [
+      'gulpfile.js',
+      'node_modules/'
+    ]
+  })
+  .on('start', () => {
+    if (!called) {
+      called = true;
+      cb();
+    }
+  })
+  .on('restart', () => {
+    setTimeout(() => reload, 1000)
+  });
+});
 
-gulp.task('html', () => (
-    gulp.src(`${SRC_DIR}/html/*.html`)
-      .pipe(gulp.dest(`${DEST_DIR}/html`))
-      .pipe(browserSync.stream())
+gulp.task('pug', () => (
+  pump([
+    browserSync.stream()
+  ])
 ));
 
 gulp.task('scss', () => (
-  gulp.src(`${SRC_DIR}/sass/*.scss`)
-    .pipe(plugins.sassBulkImport())
-    .pipe(plugins.sass({ includePaths: ['sass'] }))
-    .pipe(plugins.csso())
-    .pipe(gulp.dest(`${DEST_DIR}/css`))
-    .pipe(browserSync.stream())
+  pump([
+    gulp.src(`${SRC_DIR}/sass/*.scss`),
+    plugins.sassBulkImport(),
+    plugins.sass({ includePaths: ['sass'] }),
+    plugins.csso(),
+    gulp.dest(`${DEST_DIR}/css`),
+    browserSync.stream()
+  ])
 ));
 
-gulp.task('default', ['serve']);
+gulp.task('default', ['browser-sync'], () => {
+  gulp.watch(`${SRC_DIR}/sass/**/*.scss`, ['scss']);
+  gulp.watch(`${SRC_DIR}/js/**/*.js`, ['js']);
+  gulp.watch(`${SRC_DIR}/views/**/*.pug`, ['pug']);
+});
