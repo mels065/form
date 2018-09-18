@@ -1,51 +1,37 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    title= "Dog Lovers Survey"
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    link(href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet" type="text/css")
-    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous")
-    link(rel="stylesheet" type="text/css" media="screen" href="/css/index.css")
-  body
-    h1(id="title") Dog Lovers Survey
-    p(id="description") Please take your time to fill out this survey
+extends layout.pug
 
-    form(id="survey-form")
-      div(class="form-group")
-        label(id="name-label" for="name") Name&nbsp;
-        input(id="name" name="name" placeholder="Your Name" required)
-      div(class="form-group")
-        label(id="email-label" for="email") Email&nbsp;
-        input(id="email" name="email" type="email" placeholder="Your Email" required)
-      div(class="form-group")
-        label(for="dropdown") State&nbsp;
-        select(id="dropdown" name="state")
-          each state in states
-            option(value=`${state.split(' ')[0]}`)=state
-      div(class="form-group")
-        label(id="number-label" for="number") Number of Dogs&nbsp;
-        input(id="number" name="numOfDogs" type="number" min="1" max="30" placeholder="1")
-      div(class="form-group")
-        label(id="checkbox-label") Breed(s) you own:
-        div(class="checkboxes")
-          each breed in breeds
-            div(class="checkbox-group")
-              label=breed
-              input(name="breeds" type="checkbox" value=`${breed}`)
-      div(class="form-group")
-        label(id="radio-label") Rate this survey
-        div(class="radio-btns")
-          each num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-            div(class="radio-group")
-              label=num
-              input(name="rating" type="radio" value=num)
-      div(class="form-group")
-        label(for="comments" id="comments-label") Comments:
-        textarea(id="comments" name="comments")
-      div(class="form-group")
-        input(id="submit" type="submit")
-    
-    script(src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js")
-         
+block content
+  form(id="survey-form")
+    div(class="form-group")
+      label(id="name-label" for="name") Name&nbsp;
+      input(id="name" name="name" placeholder="Your Name" required)
+    div(class="form-group")
+      label(id="email-label" for="email") Email&nbsp;
+      input(id="email" name="email" type="email" placeholder="Your Email" required)
+    div(class="form-group")
+      label(for="dropdown") State&nbsp;
+      select(id="dropdown" name="state")
+        each state in states
+          option(value=`${state.split(' ')[0]}`)=state
+    div(class="form-group")
+      label(id="number-label" for="number") Number of Dogs&nbsp;
+      input(id="number" name="numOfDogs" type="number" min="1" max="30" placeholder="1")
+    div(class="form-group")
+      label(id="checkbox-label") Breed(s) you own:
+      div(class="checkboxes")
+        each breed in breeds
+          div(class="checkbox-group")
+            label=breed
+            input(name="breeds" type="checkbox" value=`${breed}`)
+    div(class="form-group")
+      label(id="radio-label") Rate this survey
+      div(class="radio-btns")
+        each num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+          div(class="radio-group")
+            label=num
+            input(name="rating" type="radio" value=num)
+    div(class="form-group")
+      label(for="comments" id="comments-label") Comments:
+      textarea(id="comments" name="comments")
+    div(class="form-group")
+      input(id="submit" type="submit")
