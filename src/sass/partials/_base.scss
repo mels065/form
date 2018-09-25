@@ -4,29 +4,11 @@
 @import '../variables/colors';
 @import '../variables/fonts';
 
-html, body {
-  height: 100%;
-}
-
 body {
   background: $white;
   color: $black;
   font-family: 'Teko', sans-serif;
   font-size: $font-min;
-
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  & > * {
-    flex: 1 0 auto;
-  }
-  & > footer {
-    flex: initial;
-    flex-shrink: 0;
-  }
-  & > #fcc_test_suite_wrapper {
-    flex: initial;
-  }
 }
 
 h1 {
@@ -113,4 +95,9 @@ a {
       color: $black;
     }
   }
+}
+
+footer {
+  background: $black2;
+  color: $white;
 }

@@ -28,6 +28,7 @@ gulp.task('scss', () => (
     gulp.src(`${SRC_DIR}/sass/*.scss`),
     plugins.sassBulkImport(),
     plugins.sass({ includePaths: ['sass'] }).on('error', plugins.sass.logError),
+    plugins.autoprefixer(),
     plugins.csso(),
     gulp.dest(`${DEST_DIR}/css`)
   ])
