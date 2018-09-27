@@ -2,19 +2,33 @@ const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
 const pump = require('pump');
 const browserSync = require('browser-sync').create();
-const reload = browserSync.reload;
 
 const SRC_DIR = 'src';
 const DEST_DIR = 'static';
 
-gulp.task('nodemon', () => (
-  plugins.nodemon({
-    script: 'index.js',
+gulp.task('browser-sync', ['nodemon'], () => {
+  browserSync.init(null, {
+    proxy: "http://localhost:3000",
+    files: ["static/**/*.*", "views/**/*.*"],
+    port: 5000
+  });
+});
+
+gulp.task('nodemon', (cb) => {
+  let started = false;
+  return plugins.nodemon({
+    script: 'app.js',
     ext: 'pug scss',
     env: { 'NODE_ENV': 'development' },
     tasks: ['pug', 'scss']
   })
-));
+    .on('start', () => {
+      if (!started) {
+        cb();
+        started = true;
+      }
+    })
+});
 
 gulp.task('pug', () => (
   pump([
@@ -38,4 +52,4 @@ gulp.task('scss', () => (
     })
 ));
 
-gulp.task('default', ['scss', 'pug', 'nodemon']);
+gulp.task('default', ['scss', 'pug', 'browser-sync']);

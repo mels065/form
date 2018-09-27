@@ -21,20 +21,22 @@ block content
       input(id="number" name="numOfDogs" type="number" min="0" max="30" placeholder="0")
     div(class="form-group")
       label(id="checkbox-label") Breed(s) you own:
-      div(class="checkboxes")
+      div(class="checkbox-group")
         each breed in breeds
-          div(class="checkbox-group")
+          div(class="checkbox-item")
             label=breed
-            input(name="breeds" type="checkbox" value=`${breed}`)
-            span(class="checkmark")
+            div(class="checkbox-item-input")
+              input(name="breeds" type="checkbox" value=`${breed}`)
+              span(class="checkmark")
     div(class="form-group")
       label(id="radio-label") Rate this survey
-      div(class="radio-btns")
+      div(class="radio-group")
         each num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-          div(class="radio-group")
+          div(class="radio-item")
             label=num
-            input(name="rating" type="radio" value=num)
-            span(class="checkmark")
+            div(class="radio-item-input")
+              input(name="rating" type="radio" value=num)
+              span(class="checkmark")
     div(class="form-group")
       label(for="comments" id="comments-label") Comments:
       textarea(id="comments" name="comments" placeholder="Leave any comments you may have...")
