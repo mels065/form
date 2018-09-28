@@ -56,10 +56,10 @@
 }
 
 .checkbox-group {
-  grid-template-columns: 50% 50%;
+  grid-template-columns: repeat(2, 1fr);
   .checkbox-item {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 4fr 1fr;
     width: 50%;
     label {
       font-size: 0.8rem;
@@ -92,9 +92,9 @@
 }
 
 .radio-group {
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: repeat(5, 1fr);
   .radio-item {
-    grid-template-columns: 90% 10%;
+    grid-template-columns: 9fr 1fr;
     width: 20%;
     label {
       font-size: 0.8rem;

@@ -3,12 +3,17 @@
 @import '../variables/animations';
 @import '../variables/colors';
 @import '../variables/fonts';
+@import '../variables/viewport';
 
 body {
   background: $white;
   color: $black;
   font-family: 'Teko', sans-serif;
+
   font-size: $font-min;
+  // @media screen and (min-width: $viewport-min) {
+
+  // }
 }
 
 h1 {
