@@ -10,10 +10,24 @@ app.set('view engine', 'pug');
 app.use('/css', express.static(path.join(__dirname, '/static/css')));
 app.use('/images', express.static(path.join(__dirname, '/static/images')));
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   try {
-    const states = fs.readFileSync(path.join(__dirname, '/data/states.csv')).toString().split('\n');
-    const breeds = fs.readFileSync(path.join(__dirname, '/data/breeds.csv')).toString().split('\n');
+    const [states, breeds] = (await Promise.all([
+      new Promise((resolve, reject) => {
+        fs.readFile(path.join(__dirname, '/data/states.csv'), (err, data) => {
+          if (err) reject(err);
+          resolve(data);
+        })
+      }),
+      new Promise((resolve, reject) => {
+        fs.readFile(path.join(__dirname, '/data/breeds.csv'), (err, data) => {
+          if (err) reject(err);
+          resolve(data);
+        })
+      })
+    ]))
+      .map(data => data.toString().split('\n'));
+      
     return res.render('index', { states, breeds });
   }
   catch(err) {

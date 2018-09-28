@@ -18,9 +18,9 @@ gulp.task('nodemon', (cb) => {
   let started = false;
   return plugins.nodemon({
     script: 'app.js',
-    ext: 'pug scss',
+    ext: 'scss',
     env: { 'NODE_ENV': 'development' },
-    tasks: ['pug', 'scss']
+    tasks: ['scss']
   })
     .on('start', () => {
       if (!started) {
@@ -29,13 +29,6 @@ gulp.task('nodemon', (cb) => {
       }
     })
 });
-
-gulp.task('pug', () => (
-  pump([
-    gulp.src(`${SRC_DIR}/views/*.pug`),
-    gulp.dest(`${SRC_DIR}/views`)
-  ])
-));
 
 gulp.task('scss', () => (
   pump([
@@ -52,4 +45,4 @@ gulp.task('scss', () => (
     })
 ));
 
-gulp.task('default', ['scss', 'pug', 'browser-sync']);
+gulp.task('default', ['scss', 'browser-sync']);

@@ -102,8 +102,8 @@
         }
       }
       .checkmark {
-        height: $radio;
-        width: 15px;
+        height: $radio-length;
+        width: $radio-length;
         border-radius: 100%;
         &:before {
           @include checkmark-piece($radio-length, $radio-length, 100%, 0);
