@@ -1,3 +1,5 @@
+@import '../variables/units';
+
 html, body {
   height: 100%;
 }
@@ -23,5 +25,5 @@ body {
 }
 
 #Footer {
-  padding: 15px;
+  padding: $footer-padding;
 }

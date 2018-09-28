@@ -5,40 +5,41 @@ block style
 
 block content
   form(id="survey-form" class="form-default")
-    div(class="form-group")
-      label(id="name-label" for="name") Name&nbsp;
-      input(id="name" name="name" type="text" placeholder="Your Name" required)
-    div(class="form-group")
-      label(id="email-label" for="email") Email&nbsp;
-      input(id="email" name="email" type="email" placeholder="Your Email" required)
-    div(class="form-group")
-      label(for="dropdown") State&nbsp;
-      select(id="dropdown" name="state")
-        each state in states
-          option(value=`${state.split(' ')[0]}`)=state
-    div(class="form-group")
-      label(id="number-label" for="number") Number of Dogs&nbsp;
-      input(id="number" name="numOfDogs" type="number" min="0" max="30" placeholder="0")
-    div(class="form-group")
-      label(id="checkbox-label") Breed(s) you own:
-      div(class="checkbox-group")
-        each breed in breeds
-          div(class="checkbox-item")
-            label=breed
-            div(class="checkbox-item-input")
-              input(name="breeds" type="checkbox" value=`${breed}`)
-              span(class="checkmark")
-    div(class="form-group")
-      label(id="radio-label") Rate this survey
-      div(class="radio-group")
-        each num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-          div(class="radio-item")
-            label=num
-            div(class="radio-item-input")
-              input(name="rating" type="radio" value=num)
-              span(class="checkmark")
-    div(class="form-group")
-      label(for="comments" id="comments-label") Comments:
-      textarea(id="comments" name="comments" placeholder="Leave any comments you may have...")
-    div(class="form-group")
-      button(id="submit" type="submit") Submit
+    div(class="form-contents")
+      div(class="form-group")
+        label(id="name-label" for="name") Name&nbsp;
+        input(id="name" name="name" type="text" placeholder="Your Name" required)
+      div(class="form-group")
+        label(id="email-label" for="email") Email&nbsp;
+        input(id="email" name="email" type="email" placeholder="Your Email" required)
+      div(class="form-group")
+        label(for="dropdown") State&nbsp;
+        select(id="dropdown" name="state")
+          each state in states
+            option(value=`${state.split(' ')[0]}`)=state
+      div(class="form-group")
+        label(id="number-label" for="number") Number of Dogs&nbsp;
+        input(id="number" name="numOfDogs" type="number" min="0" max="30" placeholder="0")
+      div(class="form-group")
+        label(id="checkbox-label") Breed(s) you own:
+        div(class="checkbox-group")
+          each breed in breeds
+            div(class="checkbox-item")
+              label=breed
+              div(class="checkbox-item-input")
+                input(name="breeds" type="checkbox" value=`${breed}`)
+                span(class="checkmark")
+      div(class="form-group")
+        label(id="radio-label") Rate this survey
+        div(class="radio-group")
+          each num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            div(class="radio-item")
+              label=num
+              div(class="radio-item-input")
+                input(name="rating" type="radio" value=num)
+                span(class="checkmark")
+      div(class="form-group")
+        label(for="comments" id="comments-label") Comments:
+        textarea(id="comments" name="comments" placeholder="Leave any comments you may have...")
+      div(class="form-group")
+        button(id="submit" type="submit") Submit

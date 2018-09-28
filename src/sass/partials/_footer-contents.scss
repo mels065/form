@@ -1,0 +1,15 @@
+@import '../variables/units';
+
+.footer-contents {
+  display: flex;
+  justify-content: space-between;
+  .social-media-contents {
+    display: flex;
+    .social-media-link {
+      padding: 10px;
+    }
+  }
+  .copyright {
+    padding: $footer-padding 0;
+  }
+}
