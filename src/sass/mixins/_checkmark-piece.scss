@@ -1,0 +1,19 @@
+@import '../variables/animations';
+@import '../variables/colors';
+
+@import '../functions/scale-and-rotate';
+
+@mixin checkmark-piece($height, $width, $border-radius, $rot) {
+  content: "";
+  position: absolute;
+  background: $green;
+  border-radius: $border-radius;
+  width: $width;
+  height: $height;
+  left: 50%;
+  top: 50%;
+  margin-left: -($width / 2);
+  margin-top: -($height / 2);
+  transition: $checked-transition;
+  transform: scale-and-rotate(0, 0, $rot);
+}

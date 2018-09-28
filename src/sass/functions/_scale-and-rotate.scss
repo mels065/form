@@ -1,0 +1,3 @@
+@function scale-and-rotate($scaleX, $scaleY, $rot) {
+  @return scale($scaleX, $scaleY) rotate($rot)
+}
