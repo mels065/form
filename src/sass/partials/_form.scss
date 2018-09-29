@@ -1,6 +1,7 @@
 @import './variables/colors';
 @import './variables/animations';
 @import './variables/units';
+@import './variables/viewport';
 
 @import './functions/scale-and-rotate';
 
@@ -10,11 +11,14 @@
   background: $blue;
   color: $white;
   border-radius: 5px;
+  margin: 0 auto;
   padding: 20px;
+  max-width: $tablet-viewport;
 }
 
 .form-contents {
   button {
+    display: flex;
     margin: 0 auto;
   }
 }
@@ -57,12 +61,15 @@
 
 .checkbox-group {
   grid-template-columns: repeat(2, 1fr);
+  @media screen and (min-width: $tablet-viewport) {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .checkbox-item {
     display: grid;
     grid-template-columns: 4fr 1fr;
     width: 50%;
     label {
-      font-size: 0.8rem;
+      font-size: 0.5rem;
       margin-right: 10px;
     }
     .checkbox-item-input {
@@ -93,11 +100,14 @@
 
 .radio-group {
   grid-template-columns: repeat(5, 1fr);
+  @media screen and (min-width: $tablet-viewport) {
+    grid-template-columns: repeat(10, 1fr);
+  }
   .radio-item {
     grid-template-columns: 9fr 1fr;
     width: 20%;
     label {
-      font-size: 0.8rem;
+      font-size: 0.6rem;
     }
     .radio-item-input {
       input[type="radio"] {

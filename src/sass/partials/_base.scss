@@ -5,23 +5,28 @@
 @import '../variables/fonts';
 @import '../variables/viewport';
 
-body {
+@import './functions/strip-unit';
+
+html, body {
   background: $white;
   color: $black;
   font-family: 'Teko', sans-serif;
 
   font-size: $font-min;
-  // @media screen and (min-width: $viewport-min) {
-
-  // }
+  @media screen and (min-width: $mobile-viewport) {
+    font-size: calc(#{$font-min} + #{strip-unit($font-max - $font-min)} * ((100vw - #{$mobile-viewport}) / #{strip-unit($desktop-viewport - $mobile-viewport)}))
+  }
+  @media screen and (min-width: $desktop-viewport) {
+    font-size: $font-max;
+  }
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 2rem;
 }
 
 label {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
 }
 
 input, textarea {
@@ -42,7 +47,7 @@ input[type="text"], input[type="email"], input[type="number"], select, textarea 
 input[type="text"], input[type="email"], texarea {
   &::placeholder {
     color: $gray;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 }
 
@@ -53,7 +58,7 @@ input[type="text"], input[type="email"] {
   }
   &:focus {
     &::placeholder {
-      font-size: 0.7rem;
+      font-size: 0.5rem;
       top: -5px;
     }
   }

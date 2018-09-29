@@ -1,0 +1,7 @@
+@import '../variables/viewport';
+
+.text-center--tablet {
+  @media screen and (min-width: $tablet-viewport) {
+    text-align: center;
+  }
+}
