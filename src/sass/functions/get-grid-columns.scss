@@ -1,0 +1,16 @@
+@import '../variables/grid';
+@import '../variables/viewport';
+
+@function get-checkbox-columns($viewport) {
+  @if($viewport >= $tablet-viewport) {
+    @return $checkbox-grid-max-col;
+  }
+  @return $checkbox-grid-min-col;
+}
+
+@function get-radio-columns($viewport) {
+  @if($viewport >= $tablet-viewport) {
+    @return $radio-grid-max-col;
+  }
+  @return $radio-grid-min-col;
+}
